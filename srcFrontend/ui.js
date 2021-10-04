@@ -1,4 +1,4 @@
-const source = [
+let source = [
     [7, 5, 0, 0, 1, 0, 3, 0, 0],
     [0, 0, 0, 0, 2, 0, 0, 0, 5],
     [9, 0, 8, 0, 0, 0, 0, 0, 4],
@@ -34,14 +34,17 @@ function createSudokuUiMatrix() {
         if (e && e.target && e.target.value)
             e.target.value = e.target.value.replace(/[^0-9]/g, '');
     }));
+
+    loadData();
 }
 
-function loadData(data = source) {
+function loadData(data) {
+    source = data == null ? source : data;
     for (let ii = 0; ii < 9; ii++) {
         for (let jj = 0; jj < 9; jj++) {
             const ele = document.getElementById(`m-${ii}-${jj}`);
-            ele.value = data[ii][jj];
-            ele.style.backgroundColor = (data[ii][jj] > 0) ? "#3CBC8D" : "#FFF";
+            ele.value = source[ii][jj];
+            ele.style.backgroundColor = (source[ii][jj] > 0) ? "#3CBC8D" : "#FFF";
         }
     }
 }
@@ -54,6 +57,10 @@ function resetData() {
             ele.style.backgroundColor = "#FFF";
         }
     }
+}
+
+function reloadData() {
+    window.location.href = window.location.href;
 }
 
 function postData(url = '', data = {}) {
@@ -96,6 +103,19 @@ function sendData() {
         }).catch(err => {
             console.error(err);
         });
+}
+
+function doValidate(){
+    for(let ii=0; ii<9; ii++){
+        for(let jj=0; jj<9; jj++){
+            if(!validate(source, ii, jj, source[ii][jj])){
+                alert("Not valid");
+                return false;
+            }
+        }
+    }
+    alert("Valid");
+    return true;
 }
 
 createSudokuUiMatrix();

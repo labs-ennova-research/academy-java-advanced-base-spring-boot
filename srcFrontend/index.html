@@ -6,15 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sudoku</title>
     <script type="text/javascript" src="./ui.js" defer></script>
+    <script type="text/javascript" src="./sudoku.js" defer></script>
 </head>
 <body>
     <h2>Sudoku Frontend</h2>
     <div id="container">
         <div id="sourceSudoku"></div>
-        <div id="buttonRow">
-            <input type="button" value="Load" onclick="loadData()"/>
-            <input type="button" value="Reset" onclick="resetData()" />
+        <div id="buttonRow" style="margin-top: 10px">
+            <input type="button" value="Reload" onclick="reloadData()"/>
+            <input type="button" value="Reset" onclick="resetData()"/>
             <input type="button" value="Send" onclick="sendData()" />
+            <input type="button" value="Validate" onclick="doValidate()" />
         </div>
     </div>
 </body>

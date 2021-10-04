@@ -90,7 +90,7 @@ function validate(source, rowNumber, columnNumber, guess) {
             availableValues.splice(idx, 1);
         }
     }
-    if (availableValues.indexOf(guess) != -1) {
+    if (availableValues.length == 0 || availableValues.indexOf(guess) != -1) {
         return true;
     } else {
         return false;
@@ -151,4 +151,4 @@ function main() {
 }
 var totalIteration = 0;
 var recursiveCalls = 0;
-main();
+//main();
